@@ -8,13 +8,12 @@
     <name>Spring Security Starter LDAP</name>
     <packaging>jar</packaging>
     <version>1.0.0.RELEASE</version>
-
     <description>
         <![CDATA[
             This project is a Spring Security Starter LDAP Autoconfiguration
         ]]>
     </description>
-
+    <url>https://github.com/marcosbarbero/spring-security-starter-ldap</url>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -33,6 +32,80 @@
         <lombok.version>1.16.6</lombok.version>
         <apacheds-server-jndi.version>1.5.7</apacheds-server-jndi.version>
     </properties>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <connection>scm:git:https://github.com/marcosbarbero/spring-security-starter-ldap.git</connection>
+        <developerConnection>scm:git:git@github.com:marcosbarbero/spring-security-starter-ldap.git</developerConnection>
+        <url>https://github.com/marcosbarbero/spring-security-starter-ldap</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.3</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <additionalparam>-Xdoclint:none</additionalparam>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
     <developers>
         <developer>
